@@ -1,0 +1,292 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-base: #060814;
+  --color-brand-surface: rgba(255, 255, 255, 0.04);
+  --color-brand-border: rgba(255, 255, 255, 0.08);
+  --color-brand-blue: #60a5fa;
+  --color-brand-purple: #a78bfa;
+  --color-brand-success: #34d399;
+  --color-brand-primary: #f1f5f9;
+  --color-brand-secondary: rgba(255, 255, 255, 0.45);
+
+  --animate-gradient-shift: gradientShift 15s ease infinite;
+  --animate-fade-in-up: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-float-icon: float 4s ease-in-out infinite;
+  --animate-spin-fast: spin 0.8s infinite linear;
+  --animate-shimmer-border: shimmerBorder 3s infinite linear;
+  --animate-exit-fade: exitFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-enter-fade: enterFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-cloud-float: cloudFloat 6s ease-in-out infinite;
+  --animate-rain-drop-1: rainDrop 1.2s infinite linear;
+  --animate-rain-drop-2: rainDrop 1.5s infinite linear;
+  --animate-rain-drop-3: rainDrop 1.8s infinite linear;
+  --animate-word-blur-in: wordBlurIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+
+  @keyframes shimmerBorder {
+    0% {
+      background-position: -200% 0;
+    }
+
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes gradientShift {
+
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  @keyframes exitFade {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(0.97); pointer-events: none; }
+  }
+  @keyframes enterFade {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes cloudFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1.5deg); }
+  }
+  @keyframes rainDrop {
+    0% { transform: translateY(-8px); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(18px); opacity: 0; }
+  }
+  @keyframes wordBlurIn {
+    from { opacity: 0; filter: blur(8px); transform: translateY(15px); }
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-brand-base font-sans text-brand-primary min-h-screen overflow-x-hidden relative;
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(96, 165, 250, 0.35);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(96, 165, 250, 0.55);
+}
+
+/* Staggered Delay Utilities */
+.animation-delay-0 {
+  animation-delay: 0ms;
+}
+
+.animation-delay-100 {
+  animation-delay: 100ms;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-300 {
+  animation-delay: 300ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+/* Premium Glassmorphic Card Style */
+.premium-glass {
+  background: radial-gradient(ellipse at top left, rgba(255, 255, 255, 0.03) 0%, transparent 70%),
+    rgba(10, 15, 30, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-right: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 24px;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.02);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Custom Scrollbar Hiding Utility */
+.scroll-hide {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scroll-hide::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari and Opera */
+}
+
+/* Shimmer Animation for Skeleton Loaders */
+@keyframes loadingShimmer {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0.02) 25%,
+      rgba(255, 255, 255, 0.07) 50%,
+      rgba(255, 255, 255, 0.02) 75%);
+  background-size: 200% 100%;
+  animation: loadingShimmer 1.5s infinite linear;
+}
+
+/* Gradient Border Badge Utility */
+.gradient-badge-border {
+  background: linear-gradient(#0c0d1b, #0c0d1b) padding-box,
+    linear-gradient(135deg, #60a5fa, #a78bfa) border-box;
+  border: 1.5px solid transparent;
+  border-radius: 6px;
+}
+
+/* Premium Tech Grid Overlays */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.035) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+.grid-lines {
+  background-size: 60px 60px;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+}
+
+/* Curtain transition wipe overlay */
+.curtain-overlay {
+  position: fixed;
+  inset: 0;
+  background: #000308;
+  z-index: 99999;
+  transform: translateY(100%);
+  transition: transform 0.65s cubic-bezier(0.76, 0, 0.24, 1);
+  pointer-events: none;
+}
+.curtain-overlay.active {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.curtain-overlay.exit {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+/* Word animation delay classes for header word-by-word entrance */
+.word-stagger-1 { animation-delay: 80ms; }
+.word-stagger-2 { animation-delay: 160ms; }
+.word-stagger-3 { animation-delay: 240ms; }
+.word-stagger-4 { animation-delay: 320ms; }
+.word-stagger-5 { animation-delay: 400ms; }
+.word-stagger-6 { animation-delay: 480ms; }
+.word-stagger-7 { animation-delay: 560ms; }
+.word-stagger-8 { animation-delay: 640ms; }
+.word-stagger-9 { animation-delay: 720ms; }
+.word-stagger-10 { animation-delay: 800ms; }
+
+/* Scroll Triggered Animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(6px);
+  transition: opacity 0.75s ease-out, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), filter 0.75s ease-out;
+  will-change: opacity, transform, filter;
+}
+
+.scroll-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Staggered delay helpers for scroll-triggered children */
+.scroll-delay-100 { transition-delay: 100ms; }
+.scroll-delay-200 { transition-delay: 200ms; }
+.scroll-delay-300 { transition-delay: 300ms; }
+.scroll-delay-400 { transition-delay: 400ms; }
+
+/* 3D Carousel Deck */
+.carousel-3d-container {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.carousel-3d-card {
+  transition: transform 0.75s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.75s ease, filter 0.75s ease;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+/* Interactive 3D Mock Preview Tilt */
+.mock-preview-tilt {
+  transform: perspective(1000px) rotateX(5deg) rotateY(-3deg) scale(0.98);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.6s ease;
+}
+
+.mock-preview-tilt:hover {
+  transform: perspective(1000px) rotateX(2deg) rotateY(-1deg) scale(1);
+}
+
+/* Bouncing scroll indicator animation */
+@keyframes bounceMuted {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+.animate-bounce-muted {
+  animation: bounceMuted 2s infinite ease-in-out;
+}
