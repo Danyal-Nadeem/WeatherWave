@@ -359,20 +359,47 @@ export default function LandingPage({ onEnter }) {
                 zIndex = 5;
               }
 
+              let borderStyle = 'border-white/5';
+              let glowStyle = 'shadow-[0_15px_35px_rgba(0,0,0,0.6)]';
+              
+              if (isActive) {
+                if (idx === 0) { // Lahore (Sun/Warm)
+                  borderStyle = 'border-amber-500/35';
+                  glowStyle = 'shadow-[0_20px_50px_rgba(245,158,11,0.25),_0_0_25px_rgba(245,158,11,0.1),_inset_0_1px_1px_rgba(255,255,255,0.15)]';
+                } else if (idx === 1) { // London (Rain/Cloud)
+                  borderStyle = 'border-blue-500/35';
+                  glowStyle = 'shadow-[0_20px_50px_rgba(59,130,246,0.22),_0_0_25px_rgba(59,130,246,0.12),_inset_0_1px_1px_rgba(255,255,255,0.15)]';
+                } else { // Helsinki (Snow)
+                  borderStyle = 'border-sky-400/40';
+                  glowStyle = 'shadow-[0_20px_50px_rgba(56,189,248,0.25),_0_0_25px_rgba(56,189,248,0.12),_inset_0_1px_1px_rgba(255,255,255,0.2)]';
+                }
+              }
+
               return (
                 <div
                   key={idx}
                   style={{ transform: transformStyle, opacity, zIndex, filter }}
-                  className="absolute w-[260px] p-6 rounded-3xl premium-glass border border-white/10 backdrop-blur-2xl carousel-3d-card flex flex-col items-center select-none"
+                  className={`absolute w-[260px] p-6 rounded-3xl premium-glass backdrop-blur-2xl carousel-3d-card flex flex-col items-center select-none border transition-all duration-500 ${borderStyle} ${glowStyle}`}
                 >
-                  <div className="text-[10px] font-black uppercase tracking-widest text-[#f8fafc]/40 mb-1">
+                  <span className="flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-white/50 mb-2">
+                    <svg className="w-3.5 h-3.5 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
                     {card.city}
-                  </div>
+                  </span>
+                  
                   {card.icon}
-                  <div className="text-2xl font-black text-white mt-2 leading-none">
+                  
+                  <div className="text-3xl font-extrabold text-white mt-2.5 leading-none tracking-tight">
                     {card.temp}
                   </div>
-                  <div className="text-[9px] font-bold text-brand-blue uppercase tracking-widest mt-1">
+                  
+                  <div className={`mt-3 px-2.5 py-0.5 rounded-full text-[9px] font-black uppercase tracking-widest border transition-all duration-300 ${
+                    idx === 0 ? 'bg-amber-500/10 text-amber-300 border-amber-500/20' :
+                    idx === 1 ? 'bg-blue-500/10 text-blue-300 border-blue-500/20' :
+                    'bg-sky-400/10 text-sky-300 border-sky-400/20'
+                  }`}>
                     {card.desc}
                   </div>
                 </div>
@@ -413,7 +440,7 @@ export default function LandingPage({ onEnter }) {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Card 1 */}
-          <div className="premium-glass p-8 border border-white/5 hover:border-white/10 rounded-3xl select-none scroll-animate scroll-delay-100 flex flex-col justify-between h-full transition-all duration-300">
+          <div className="premium-glass p-8 border border-white/5 hover:border-blue-500/30 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(59,130,246,0.12)] rounded-3xl select-none scroll-animate scroll-delay-100 flex flex-col justify-between h-full transition-all duration-300">
             <div>
               <div className="w-[68px] h-[68px] rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-6">
                 {/* High-Fidelity Custom Globe SVG */}
@@ -446,7 +473,7 @@ export default function LandingPage({ onEnter }) {
           </div>
 
           {/* Card 2 */}
-          <div className="premium-glass p-8 border border-white/5 hover:border-white/10 rounded-3xl select-none scroll-animate scroll-delay-200 flex flex-col justify-between h-full transition-all duration-300">
+          <div className="premium-glass p-8 border border-white/5 hover:border-indigo-500/30 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(99,102,241,0.12)] rounded-3xl select-none scroll-animate scroll-delay-200 flex flex-col justify-between h-full transition-all duration-300">
             <div>
               <div className="w-[68px] h-[68px] rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mb-6">
                 {/* High-Fidelity Custom Glassmorphic Cloud & Lightning SVG */}
@@ -483,7 +510,7 @@ export default function LandingPage({ onEnter }) {
           </div>
 
           {/* Card 3 */}
-          <div className="premium-glass p-8 border border-white/5 hover:border-white/10 rounded-3xl select-none scroll-animate scroll-delay-300 flex flex-col justify-between h-full transition-all duration-300">
+          <div className="premium-glass p-8 border border-white/5 hover:border-pink-500/30 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(236,72,153,0.12)] rounded-3xl select-none scroll-animate scroll-delay-300 flex flex-col justify-between h-full transition-all duration-300">
             <div>
               <div className="w-[68px] h-[68px] rounded-full bg-pink-500/10 border border-pink-500/20 flex items-center justify-center mb-6">
                 {/* High-Fidelity Custom Compass Rose SVG */}
