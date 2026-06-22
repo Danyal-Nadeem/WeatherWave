@@ -50,6 +50,7 @@ export default function App() {
     // 2. Once curtain covers screen (650ms), toggle dashboard mount
     setTimeout(() => {
       setShowDashboard(true);
+      window.scrollTo(0, 0); // Reset window scroll to top
 
       // 3. Slide curtain out top to reveal dashboard
       setCurtainState('exit');
