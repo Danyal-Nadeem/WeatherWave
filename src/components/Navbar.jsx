@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 h-[68px] bg-[#060814]/40 backdrop-blur-xl border-b border-white/5 flex justify-between items-center px-6 md:px-8 shadow-sm">
       {/* Animated gradient bottom underline */}
-      <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-brand-blue via-brand-purple to-transparent bg-[length:200%_100%] animate-shimmer-border"></div>
+      <div className="absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r from-[#38bdf8] via-[#6366f1] via-[#a78bfa] to-[#38bdf8] bg-[length:200%_100%] animate-shimmer-border shadow-[0_2px_14px_rgba(56,189,248,0.85)]"></div>
       
       <a href="#" className="flex items-center gap-2.5 decoration-none select-none" aria-label="WeatherWave homepage">
         {/* Custom wave + droplet SVG */}
